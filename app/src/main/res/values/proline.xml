@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerLineArray1">
+
+        <item>1라인</item>
+
+        <item>2라인</item>
+
+        <item>3라인</item>
+
+    </string-array>
+
+    <!--    <string-array name="spinnerArray2">
+
+            <item>1</item>
+
+            <item>2</item>
+
+            <item>3</item>
+
+            <item>4</item>
+
+            <item>5</item>
+
+        </string-array>
+
+        <string-array name="spinnerArray3">
+
+            <item>1</item>
+
+            <item>2</item>
+
+            <item>3</item>
+
+            <item>4</item>
+
+            <item>5</item>
+
+        </string-array>-->
+</resources>

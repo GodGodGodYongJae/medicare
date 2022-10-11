@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/menuBar"
+        android:layout_width="match_parent"
+        android:background="#4B73C5"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Box 등록"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            android:fontFamily="@font/nanumsquare_acb"/>
+
+    </RelativeLayout>
+
+
+
+        <!--<RelativeLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            >-->
+
+
+            <!--<TextView
+                android:id="@+id/boxInformationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PDA 단말기의  스캔버튼을 눌러 BOX를 등록 하세요"
+                android:layout_gravity="center|right"
+                android:layout_toLeftOf="@+id/boxScanBtn"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:layout_centerHorizontal="true"
+                />
+
+        </RelativeLayout>-->
+
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="17dp"
+        android:fontFamily="@font/nanumsquare_acb"/>-->
+
+    <!--<androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <TextView
+                android:id="@+id/boxCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Box 총 개수 :              "
+                android:layout_gravity="center|right"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:textSize="14dp"
+                />
+
+            <ImageView
+                android:id="@+id/boxCancelBtn"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingLeft="2dp"
+                android:clickable="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/cancel" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>-->
+
+    `<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="품목명"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="개수"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="개수"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="개수"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        >
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.7">
+
+            <!--<ListView
+                android:id="@+id/boxListview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:gravity="center"
+                    android:text="명세서"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:gravity="center"
+                    android:text="품목명"
+                    android:textSize="13dp" />
+            </ListView>-->
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="선입고량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="미입고량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="설정"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:visibility="gone"
+                />
+        </LinearLayout>-->
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/previousBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/previous" />
+
+                <ImageView
+                    android:id="@+id/listSendBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/registsuccess" />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

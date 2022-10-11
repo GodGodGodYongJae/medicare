@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/menuBar"
+        android:layout_width="match_parent"
+        android:background="#4B73C5"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="생  산"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            android:fontFamily="@font/nanumsquare_acb"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pallet"
+        android:padding="10dp"
+        android:textSize="19dp"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="바코드 번호"
+                android:layout_centerVertical="true"
+                android:textSize="17dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+
+            <TextView
+                android:id="@+id/palletBarcode"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/palletScanBtn"
+                android:ellipsize="end"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:gravity="right"
+                android:maxLines="1"
+                android:text="Pallet를 스캔해주세요." />
+
+            <ImageView
+                android:id="@+id/palletScanBtn"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/scan_btn"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="4dp"
+                android:clickable="true"
+                android:paddingLeft="2dp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--<androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:text="파렛트 번호"
+                    android:textSize="17dp" />
+
+            &lt;!&ndash;    <view
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />&ndash;&gt;
+
+                <EditText
+                    android:id="@+id/palletNumEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_toLeftOf="@+id/palletNumBtn"
+                    android:ems="3"
+                    android:inputType="number"
+                    android:gravity="right"
+                    />
+
+                <ImageView
+                    android:id="@+id/palletNumBtn"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="2dp"
+                    android:clickable="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/inputbtn" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                >
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/palletNumSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="100dp"
+                app:ms_dropdown_max_height="300dp"
+                android:gravity="right"
+                android:layout_toLeftOf="@+id/palletSelectBtn"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:layout_marginTop="7dp"
+
+                />
+
+                <ImageView
+                    android:id="@+id/palletSelectBtn"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="2dp"
+                    android:clickable="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/inputbtn" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>-->
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="19dp"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Box 바코드 번호"
+                android:layout_centerVertical="true"
+                android:textSize="17dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+           &lt;!&ndash; <view
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>&ndash;&gt;
+
+            <TextView
+                android:id="@+id/boxCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Box 총 개수 :              "
+                android:layout_gravity="center|right"
+                android:layout_toLeftOf="@+id/boxScanBtn"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nanumsquare_acb"/>
+
+            <ImageView
+                android:id="@+id/boxScanBtn"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/scan_btn"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="4dp"
+                android:paddingLeft="2dp"
+                android:clickable="true"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        >
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.7">
+
+        <ListView
+            android:id="@+id/boxListview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+
+            />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/listResetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/reset_btn" />
+
+                <ImageView
+                    android:id="@+id/listSendBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/registsuccess" />
+
+                <!--<ImageView
+                    android:id="@+id/listResetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/reset_btn" />-->
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

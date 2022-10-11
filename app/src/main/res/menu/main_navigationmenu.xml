@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".newMainActivity">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/loginBtn"
+            android:orderInCategory="1"
+            android:icon="@drawable/loginbutton"
+            android:title="로그인">
+        </item>
+
+        <item
+            android:id="@+id/logoutBtn"
+            android:orderInCategory="1"
+            android:title="로그아웃">
+        </item>
+
+        <item
+            android:id="@+id/importb"
+            android:icon="@drawable/import_logo"
+            android:orderInCategory="2"
+            android:title="입  고">
+        </item>
+
+        <item
+            android:id="@+id/export"
+            android:icon="@drawable/export_logo"
+            android:orderInCategory="3"
+            android:title="출  고"
+            />
+
+        <item
+
+            android:id="@+id/production"
+            android:icon="@drawable/production_logo"
+            android:orderInCategory="4"
+            android:title="생  산"
+            />
+
+        <item
+            android:id="@+id/not_trans"
+            android:icon="@drawable/not_transmitt"
+            android:orderInCategory="5"
+            android:title="미 전송 목록"
+            />
+    </group>
+
+
+
+
+</menu>

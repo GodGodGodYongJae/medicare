@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+
+    <!--자재창고입고디테일-->
+
+    <RelativeLayout
+        android:id="@+id/menuBar"
+        android:layout_width="match_parent"
+        android:background="#4B73C5"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자재 입고"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            android:fontFamily="@font/nanumsquare_acb"/>
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="품목명"
+                android:layout_centerVertical="true"
+                android:textSize="13dp"
+                android:gravity="center"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="총수량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="입고수량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+           <!-- <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/pdtCodeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/pdtCodeBtn"
+                android:text="위치"
+                android:dropDownWidth="100dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                app:ms_dropdown_max_height="300dp" />-->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="위치"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <!--<TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="창고위치1"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:visibility="gone"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="창고위치2"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:visibility="gone"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="창고위치3"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:visibility="gone"
+                />-->
+
+        </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.7">
+
+            <!-- ListView 끝에서 다음 데이터 로딩중에 보여줄 프로그레스바
+              <ProgressBar
+                   android:id="@+id/progressbar"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentBottom="true"/>-->
+
+            <ListView
+                android:id="@+id/pdtListview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:choiceMode="multipleChoice" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/importListResetBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/reset_btn" />
+
+
+            <ImageView
+                android:id="@+id/importListSendBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/registsuccess" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

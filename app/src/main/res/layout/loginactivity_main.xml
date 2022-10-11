@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="123dp"
+        android:layout_marginTop="0dp"
+        android:text="UZIN MEDICARE"
+        android:textSize="50dp"
+        android:textColor="@color/zxing_custom_possible_result_points"
+        android:gravity="center"
+         />
+    <!--android:src="@drawable/loginm_03"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디"
+        android:textSize="18dp"
+        android:layout_marginLeft="35dp"
+        android:textColor="#6A6A6A"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="1dp"
+        android:inputType="text"
+        android:ems="14"
+        android:hint="아이디를 입력해 주세요."
+        android:textColorHint="#9C9C9C"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textSize="18dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="35dp"
+        android:textColor="#6A6A6A"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <EditText
+        android:id="@+id/et_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="1dp"
+        android:inputType="textPassword"
+        android:ems="14"
+        android:hint="비밀번호를 입력해 주세요."
+        android:textColorHint="#9C9C9C"
+        android:textSize="18dp"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:checked="true"
+        android:text="자동 로그인"
+        android:fontFamily="@font/nanumsquare_acb"
+        android:buttonTint="#a6a6a6"
+        />
+    <ImageView
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/loginbutton"
+        android:paddingTop="15dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:clickable="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비 로그인 사용"
+        android:textSize="17dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        android:textColor="#DA3737"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        />
+
+
+</LinearLayout>

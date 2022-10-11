@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/menuBar"
+        android:layout_width="match_parent"
+        android:background="#4B73C5"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미 입고품 검수"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            android:fontFamily="@font/nanumsquare_acb"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="품목코드로 불러오기"
+        android:padding="10dp"
+        android:textSize="17dp"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="품목코드"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:textSize="14dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/pdtCodeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/pdtCodeBtn"
+                android:dropDownWidth="100dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                app:ms_dropdown_max_height="300dp" />
+
+
+            <ImageView
+                android:id="@+id/pdtCodeBtn"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:clickable="true"
+                android:gravity="right"
+                android:layout_gravity="center|right"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/insert" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전표로 불러오기"
+        android:padding="10dp"
+        android:textSize="17dp"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:text="발주번호"
+                    android:layout_marginTop="20dp"
+                    android:textSize="14dp" />
+
+
+                <TextView
+                    android:id="@+id/orderCodeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+
+                    android:layout_toLeftOf="@id/orderCodeSpinner"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:textSize="13dp"
+                    />
+
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/orderCodeSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/orderCodeBtn"
+                    android:dropDownWidth="100dp"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    app:ms_dropdown_max_height="300dp" />
+
+                <ImageView
+                    android:id="@+id/orderCodeBtn"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="right"
+                    android:layout_gravity="center|right"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/insert" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                >
+
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="품목"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="17dp"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="6dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:text="품목명"
+                android:layout_centerVertical="true"
+                android:textSize="13dp"
+                android:gravity="center"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="명세서"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="선입고량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="미입고량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="설정"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:visibility="gone"
+                />
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        >
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.7">
+
+            <ListView
+                android:id="@+id/pdtListview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:choiceMode="multipleChoice"
+                />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/importListResetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/reset_btn" />
+
+
+                <ImageView
+                    android:id="@+id/importListSendBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/registsuccess" />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

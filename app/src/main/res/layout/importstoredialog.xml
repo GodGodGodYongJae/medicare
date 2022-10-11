@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:id="@+id/boxDialogTextView1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="실수량과 창고를 등록하세요"
+        android:textSize="16dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp">
+    <TextView
+        android:id="@+id/boxDialogTextView4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(현재 창고 : 없음)"
+        android:textSize="14dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+    <EditText
+        android:id="@+id/importStore_Qty"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="117dp"
+        android:inputType="number"
+        android:gravity="right"
+        android:ems="20" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp">
+    <TextView
+        android:id="@+id/boxDialogTextView2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="실수량 : "
+        android:textSize="15dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        />
+
+        <EditText
+            android:id="@+id/importEditReal_Qty"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="80dp"
+            android:inputType="number"
+            android:gravity="right"
+            android:ems="20" />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp">
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/storeNameSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_toLeftOf="@+id/palletSelectBtn"
+            android:dropDownWidth="100dp"
+            android:fontFamily="@font/nanumsquare_acb"
+            android:gravity="right"
+            android:textSize="12dp"
+            app:ms_dropdown_max_height="300dp" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/storeDetail1Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dropDownWidth="100dp"
+            android:layout_toRightOf="@+id/storeNameSpinner"
+            android:layout_marginLeft="10dp"
+            app:ms_dropdown_max_height="300dp"
+            android:gravity="right"
+            android:layout_toLeftOf="@+id/palletSelectBtn"
+            android:fontFamily="@font/nanumsquare_acb"
+            android:layout_marginTop="7dp"
+            android:textSize="12dp"
+            />
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/storeDedatil2Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dropDownWidth="100dp"
+            android:layout_toRightOf="@+id/storeDetail1Spinner"
+            android:layout_marginLeft="10dp"
+            app:ms_dropdown_max_height="300dp"
+            android:gravity="right"
+            android:layout_toLeftOf="@+id/palletSelectBtn"
+            android:fontFamily="@font/nanumsquare_acb"
+            android:layout_marginTop="7dp"
+            android:textSize="12dp"
+            />
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/importListResetBtn1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/reset_btn" />
+
+
+        <ImageButton
+            android:id="@+id/importListSendBtn1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/registsuccess" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
