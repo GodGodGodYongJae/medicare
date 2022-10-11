@@ -55,7 +55,7 @@ public class ImportTradingListViewAdapter extends BaseAdapter {
         this.layoutId =layoutId;
         this.listViewArr = listViewArr;
         this.importBean = importBean;
-        this.inflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      //  this.inflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
     }
@@ -91,10 +91,104 @@ public class ImportTradingListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 //        final int pos = position;
+        final ViewHolder holder;
         //아래로 스크롤 했을때 위에있는것들 재사용
+        convertView = null;
         if(convertView == null){
-            convertView = inflater.inflate(layoutId, parent, false);
+            holder = new ViewHolder();
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(layoutId, null);
+            holder.caption = (EditText) convertView
+                    .findViewById(R.id.importTextReal_Qty);
+            holder.caption.setTag(position);
+            holder.caption.setText(String.valueOf(listViewArr.get(position).getPdt_real_qty()));
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
         }
+        int tag_position = (Integer) holder.caption.getTag();
+        holder.caption.setId(tag_position);
+        holder.caption.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                final int position2 = holder.caption.getId();
+                final EditText Caption = (EditText) holder.caption;
+
+                if(Caption.getText().toString().length() >0)
+                {
+                    listViewArr.get(position2).setPdt_real_qty(Integer.parseInt(Caption.getText().toString()));
+//                    listViewArr.set(position2,Caption.getText().toString());
+                }
+//                else if(Integer.parseInt(Caption.getText().toString()) > listViewArr.get(position2).getQty())
+//                {
+//
+//                    listViewArr.get(position2).setPdt_real_qty(listViewArr.get(position2).getQty());
+//                }
+//                else{
+//                    listViewArr.get(position2).setPdt_real_qty(listViewArr.get(position2).getQty());
+//                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                final int position2 = holder.caption.getId();
+                final EditText Caption = (EditText) holder.caption;
+                int qty = Integer.valueOf(String.valueOf(listViewArr.get(position2).getQty()));
+                int goodpty = Integer.valueOf(String.valueOf(listViewArr.get(position2).getPdt_real_qty()));
+                if(qty < goodpty)
+                {
+//                    Log.i("inti","들어옴");
+                    listViewArr.get(position2).setPdt_real_qty(listViewArr.get(position2).getQty());
+                    if(  String.valueOf(listViewArr.get(position2).getPdt_real_qty()) != Caption.getText().toString())
+                    {
+                        Caption.setText(Integer.toString(listViewArr.get(position2).getPdt_real_qty()));
+//                        setSelection(position)
+//                        Log.i("inti",Caption.getText().toString());
+//                        Log.i("inti2",String.valueOf(listViewArr.get(position2).getQty()));
+                        Caption.requestFocus();
+                        Caption.setSelection(Caption.getText().toString().length());
+                        Toast.makeText(context, "납품수량을 초과할 수 없습니다.", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+                Log.i("init",String.valueOf(Caption.getText().toString().length()));
+                if (Caption.getText().toString().length() > 1 && s.toString().startsWith("0")) {
+                    String zerobuff = Caption.getText().toString();
+                    Log.i("zero",zerobuff.substring(1));
+                    Caption.setText(zerobuff.substring(1));
+                    Caption.requestFocus();
+                    Caption.setSelection(Caption.getText().toString().length());
+                }
+
+
+
+//                if(  holder.caption.hasFocus()){
+//                    int qty = Integer.valueOf(String.valueOf(listViewArr.get(position).getQty()));
+//                    int goodQty = 0;
+//                    try {
+//                        goodQty = Integer.valueOf(String.valueOf(s).replaceFirst("^0+(?!$)",""));
+//                    }catch (NumberFormatException e){
+//                        goodQty = 0;
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                    holder.caption.removeTextChangedListener(this);
+//                    if(goodQty > qty){
+//                        goodQty = qty;
+//                        holder.caption.setText(String.valueOf(qty));
+//                    }
+//                    holder.caption.setText(String.valueOf(goodQty));
+//                    holder.caption.addTextChangedListener(this);
+//                }
+
+            }
+
+        });
 
         TextView importTextPdt_Name = (TextView) convertView.findViewById(R.id.importTextPdt_Name);
         importTextPdt_Name.setText(listViewArr.get(position).getPdt_name());
@@ -106,10 +200,10 @@ public class ImportTradingListViewAdapter extends BaseAdapter {
 //        TextView importTextUnit = (TextView) convertView.findViewById(R.id.importTextUnit);
 //        importTextUnit.setText((listViewArr.get(position).getUnit()));
 
-        EditText importTextReal_Qty = (EditText) convertView.findViewById(R.id.importTextReal_Qty);
+//        EditText importTextReal_Qty = (EditText) convertView.findViewById(R.id.importTextReal_Qty);
         //importTextReal_Qty.setText(Integer.toString(listViewArr.get(position).getDel_qty()));
             //importTextReal_Qty.setText(Integer.toString(listViewArr.get(position).getPdt_real_qty()));
-            importTextReal_Qty.setHint(Integer.toString(listViewArr.get(position).getPdt_qty()));
+//            importTextReal_Qty.setHint(Integer.toString(listViewArr.get(position).getPdt_qty()));
 
         /*TextView importstore = (TextView) convertView.findViewById(R.id.importstore);
         importstore.setText((listViewArr.get(position).getStorage()));*/
@@ -124,62 +218,62 @@ public class ImportTradingListViewAdapter extends BaseAdapter {
 //            listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEditText));
 //        }
 //
-      if(importTextReal_Qty.getText().toString().equals("")){
-          importTextReal_Qty.setText("0");
-        }
-
-
-        importTextReal_Qty.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEdithint));
-            }
-
-
-            @Override
-            public void afterTextChanged(Editable s) {
-//                try {
-//                    if (importTextReal_Qty.getText().toString().equals("")) {
-//                        realEdithint = importTextReal_Qty.getHint().toString();
-//                        listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEdithint));
+//      if(importTextReal_Qty.getText().toString().equals("")){
+//          importTextReal_Qty.setText("0");
+//        }
 //
-//                    }else {
 //
-//                        realEditText = importTextReal_Qty.getText().toString();
-//                        listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEditText));
+//        importTextReal_Qty.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 //
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+////                listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEdithint));
+//            }
+//
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+////                try {
+////                    if (importTextReal_Qty.getText().toString().equals("")) {
+////                        realEdithint = importTextReal_Qty.getHint().toString();
+////                        listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEdithint));
+////
+////                    }else {
+////
+////                        realEditText = importTextReal_Qty.getText().toString();
+////                        listViewArr.get(position).setPdt_real_qty(Integer.parseInt(realEditText));
+////
+////                    }
+////
+////                }catch (Exception e){
+////
+////                }
+//
+//                if(importTextReal_Qty.hasFocus()){
+//                    int qty = Integer.valueOf(String.valueOf(listViewArr.get(position).getQty()));
+//                    int goodQty = 0;
+//                    try {
+//                        goodQty = Integer.valueOf(String.valueOf(s).replaceFirst("^0+(?!$)",""));
+//                    }catch (NumberFormatException e){
+//                        goodQty = 0;
+//                    }catch (Exception e){
+//                        e.printStackTrace();
 //                    }
-//
-//                }catch (Exception e){
-//
+//                    importTextReal_Qty.removeTextChangedListener(this);
+//                    if(goodQty > qty){
+//                        goodQty = qty;
+//                        importTextReal_Qty.setText(String.valueOf(qty));
+//                    }
+//                    importTextReal_Qty.setText(String.valueOf(goodQty));
+//                    importTextReal_Qty.addTextChangedListener(this);
 //                }
-
-                if(importTextReal_Qty.hasFocus()){
-                    int qty = Integer.valueOf(String.valueOf(listViewArr.get(position).getQty()));
-                    int goodQty = 0;
-                    try {
-                        goodQty = Integer.valueOf(String.valueOf(s).replaceFirst("^0+(?!$)",""));
-                    }catch (NumberFormatException e){
-                        goodQty = 0;
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    importTextReal_Qty.removeTextChangedListener(this);
-                    if(goodQty > qty){
-                        goodQty = qty;
-                        importTextReal_Qty.setText(String.valueOf(qty));
-                    }
-                    importTextReal_Qty.setText(String.valueOf(goodQty));
-                    importTextReal_Qty.addTextChangedListener(this);
-                }
-
-            }
-        });
+//
+//            }
+//        });
 
 // 단일 버튼이었을때
 //        Button QtyBtn = (Button)convertView.findViewById(R.id.QtyBtn);
@@ -236,4 +330,7 @@ public class ImportTradingListViewAdapter extends BaseAdapter {
 
         return convertView;
     }
+}
+class ViewHolder {
+    EditText caption;
 }
