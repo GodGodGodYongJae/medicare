@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:layout_gravity="center_vertical"
+    >
+
+    <TextView
+        android:id="@+id/pdt_name"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="품목명"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@android:color/black"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textSize="12dp" />
+
+
+    <TextView
+        android:id="@+id/qty"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="주문수량"
+        android:textColor="@android:color/black"
+        android:textSize="12dp" />
+
+    <EditText
+        android:id="@+id/exportTextReal_Qty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:inputType="number"
+        android:textColor="@android:color/holo_red_light"
+        android:textColorHint="@android:color/holo_red_light"
+        android:textSize="12dp"
+        android:visibility="visible" />
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/exportTextBad_Qty"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:gravity="right"-->
+    <!--        android:inputType="number"-->
+    <!--        android:textColor="@android:color/holo_red_light"-->
+    <!--        android:textColorHint="@android:color/holo_red_light"-->
+    <!--        android:textSize="12dp"-->
+    <!--        android:hint="0"-->
+    <!--        android:descendantFocusability="afterDescendants"-->
+    <!--        android:visibility="visible" />-->
+
+    <TextView
+        android:id="@+id/location_name"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="적재창고"
+        android:textColor="@android:color/black"
+        android:textSize="12dp" />
+    <!--    <Spinner-->
+    <!--        android:id="@+id/badReason"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:layout_weight="1"-->
+    <!--        />-->
+
+
+</LinearLayout>
+
+

@@ -173,7 +173,8 @@ public class newMainActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.export_pagebtn:
-                intent = new Intent(newMainActivity.this, WarehouseActivity.class);
+                intent = new Intent(newMainActivity.this, product_new.class);
+//                intent = new Intent(newMainActivity.this, WarehouseActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 break;
@@ -214,7 +215,8 @@ public class newMainActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.export_pagebtn:
 
-                intent = new Intent(newMainActivity.this, newProductionActivity.class);
+//                intent = new Intent(newMainActivity.this, newProductionActivity.class);
+                intent = new Intent(newMainActivity.this, product_new.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 break;

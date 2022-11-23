@@ -86,6 +86,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                             //TOdo
+                            JSONObject storeData = jsonObject.getJSONObject("storeData");
+                            Log.w("storeData", String.valueOf(storeData));
+                            String manager_seq = storeData.getString("manager_seq");
+                            String manager_name = storeData.getString("manager_name");
+                            String manager_tel = storeData.getString("manager_tel");
+                            String use_yn = storeData.getString("use_yn");
+                            String auth_group_seq = storeData.getString("auth_group_seq");
+                            String manager_email = storeData.getString("manager_email");
+
+                            logineditor.putString("test_id", manager_id);
+                            logineditor.putString("manager_seq", manager_seq);
+                            logineditor.putString("manager_name", manager_name);
+                            logineditor.putString("manager_id", manager_id);
+                            logineditor.putString("manager_tel", manager_tel);
+                            logineditor.putString("use_yn", use_yn);
+                            logineditor.putString("auth_group_seq", auth_group_seq);
+                            logineditor.putString("manager_email", manager_email);
+                            logineditor.commit();
+
+                            Log.d("내용물::::", String.valueOf(logineditor));
+
 
                             // End
 

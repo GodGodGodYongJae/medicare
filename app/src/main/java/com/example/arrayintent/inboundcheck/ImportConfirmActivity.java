@@ -34,6 +34,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -43,7 +44,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 public class ImportConfirmActivity extends AppCompatActivity implements View.OnClickListener {
     ImportListViewAdapter importListViewAdapter;
@@ -69,6 +73,8 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
     int[] idmodebuf = new int[]{PropertyID.WEDGE_KEYBOARD_ENABLE, PropertyID.TRIGGERING_MODES};
     int[] idmode;
     String result;
+
+    boolean isMes;
 
     //추가 부분
     private BroadcastReceiver mScanReceiver = new BroadcastReceiver() {
@@ -221,8 +227,10 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
 
                     Log.i("testLog",String.valueOf(pdtListview));
                     try{
-                            intent = new Intent(getApplicationContext(),inboundCheckActivity.class);
-                            startActivity(intent);
+                        String ordercode = selectBoxList.get(0).getOrder_code();
+                            intent = new Intent(getApplicationContext(),inbound_PopupActivity.class);
+                            intent.putExtra("OrderCode",ordercode);
+                            startActivityForResult(intent,2);
 //                        ImportListConnection2 importListConnection2 = new ImportListConnection2();
 //                        String Json_result=importListConnection2.execute(orderCodeEditText.getText().toString()).get();
 //                        Log.w("Json", Json_result);
@@ -247,7 +255,10 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
                     }
 
                 }else{
-                    Toast.makeText(this, "먼저 QR을 스캔 해주세요", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(getApplicationContext(),inbound_PopupActivity.class);
+//                    intent.putExtra("OrderCode",ordercode);
+                    startActivityForResult(intent,2);
+//                    Toast.makeText(this, "먼저 QR을 스캔 해주세요", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -282,6 +293,26 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
         SharedPreferences.Editor importeditor = importpref.edit();
 //        List<ImportBean> importBean = new ArrayList<ImportBean>();
 
+        if(requestCode == 2 && resultCode == RESULT_OK)
+        {
+            //Todo 해당 데이터의 qr 코드를 넣고 서치 함수를 실행해줘여 함,
+            Log.i("TEst","WaterMung");
+            String result = data.getStringExtra("result");
+            ImportListConnectionMes importListConnectionMes = new ImportListConnectionMes();
+            try {
+                String Json_result = importListConnectionMes.execute(result).get();
+                Log.w("Json", Json_result);
+                delCompanyNameText.setText(selectBoxList.get(0).getSupply_manager_name());
+                importTradingListViewAdapter = new ImportTradingListViewAdapter(getApplicationContext(),R.layout.import_listview_list, selectBoxList, importBean);
+                pdtListview = (ListView) findViewById(R.id.pdtListview);
+                pdtListview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                pdtListview.setAdapter(importTradingListViewAdapter);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         if (trading_result != null) {
             if (trading_data != null) {
                 //파렛트 스캔 시 data, num 둘 다 불러오기
@@ -305,59 +336,84 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
 
                     } catch (Exception e) {
                         Log.e("importconfirmerror",e.getMessage());
-                        Toast.makeText(this, "QR코드가 맞지 않거나 서버 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(this, "QR코드가 만료되었거나 서버 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
                     }
 
                 }
             }
         }else {
+
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
     private void jsonSend() {
         JSONObject JsonSend = new JSONObject();
-
+        SharedPreferences loginpref = getSharedPreferences("login",MODE_PRIVATE);
         try{
             JSONArray jsonSendArray = new JSONArray();
             for(int i=0; i<selectBoxList.size(); i++){
                 ImportBean sendImportBean = selectBoxList.get(i);
                 JSONObject row = new JSONObject();
-                row.put("filename", sendImportBean.getTrading_qr_filecode());
-                row.put("order_code", sendImportBean.getOrder_code());
-                row.put("supply_manager_name", sendImportBean.getSupply_manager_name());
-                row.put("no", sendImportBean.getNO());
-                row.put("pdt_name", sendImportBean.getPdt_name());
-                row.put("pdt_cd", sendImportBean.getPdt_cd());
-                row.put("pdt_qty", sendImportBean.getPdt_qty());
-                row.put("pdt_real_qty",sendImportBean.getPdt_real_qty());
-                row.put("pdt_code", sendImportBean.getPdt_code());
-                row.put("pdt_standard", sendImportBean.getPdt_standard());
-                row.put("unit", sendImportBean.getUnit());
-                row.put("unit_price", sendImportBean.getUnit_price());
-                row.put("supply_price", sendImportBean.getSupply_price());
-                row.put("vat", sendImportBean.getVat());
-                row.put("order_date", sendImportBean.getOrder_date());
-                row.put("close_date", sendImportBean.getClose_date());
-                //row.put("business_no", sendImportBean.getBusiness_no());
-                //row.put("supply_manager_name", sendImportBean.getSupply_manager_name());
-                row.put("from_type", sendImportBean.getFrom_type());
-                row.put("to_type", sendImportBean.getTo_type());
-                row.put("bigo",sendImportBean.getBigo());
-                row.put("order_addr",sendImportBean.getOrder_addr());
-                row.put("supply_amount",sendImportBean.getSupply_amount());
-                row.put("tax_amount",sendImportBean.getTax_amount());
-                row.put("total_amount",sendImportBean.getTotal_amount());
-                row.put("order_seq",sendImportBean.getOrder_seq());
-                row.put("qty",sendImportBean.getQty());
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String getTime = dateFormat.format(date);
+                int exportTextReal_Qty = selectBoxList.get(i).getPdt_real_qty();
+                row.put("io_date",getTime);
+                row.put("io_type","IN");
+                row.put("cust_seq",selectBoxList.get(i).getCust_seq());
+                row.put("orderno",selectBoxList.get(i).getOrder_code());
+                row.put("manager_seq",loginpref.getString("manager_seq",""));
+                row.put("pdt_cd",selectBoxList.get(i).getPdt_cd());
+                row.put("good_qty",exportTextReal_Qty);
+                row.put("bad_qty","0");
+                row.put("bad_reason","");
+                row.put("bigo","");
+                try {
+                    row.put("TRADING_QR_FILECODE",selectBoxList.get(0).getTrading_qr_filecode());
+                }catch (Exception e )
+                {
+                    // TODO :: 일단 mes는 qr코드가 없으므로.
+                }
+
+
+//                row.put("filename", sendImportBean.getTrading_qr_filecode());
+//                row.put("order_code", sendImportBean.getOrder_code());
+//                row.put("supply_manager_name", sendImportBean.getSupply_manager_name());
+//                row.put("no", sendImportBean.getNO());
+//                row.put("pdt_name", sendImportBean.getPdt_name());
+//                row.put("pdt_cd", sendImportBean.getPdt_cd());
+//                row.put("pdt_qty", sendImportBean.getPdt_qty());
+//                row.put("pdt_real_qty",sendImportBean.getPdt_real_qty());
+//                row.put("pdt_code", sendImportBean.getPdt_code());
+//                row.put("pdt_standard", sendImportBean.getPdt_standard());
+//                row.put("unit", sendImportBean.getUnit());
+//                row.put("unit_price", sendImportBean.getUnit_price());
+//                row.put("supply_price", sendImportBean.getSupply_price());
+//                row.put("vat", sendImportBean.getVat());
+//                row.put("order_date", sendImportBean.getOrder_date());
+//                row.put("close_date", sendImportBean.getClose_date());
+//                //row.put("business_no", sendImportBean.getBusiness_no());
+//                //row.put("supply_manager_name", sendImportBean.getSupply_manager_name());
+//                row.put("from_type", sendImportBean.getFrom_type());
+//                row.put("to_type", sendImportBean.getTo_type());
+//                row.put("bigo",sendImportBean.getBigo());
+//                row.put("order_addr",sendImportBean.getOrder_addr());
+//                row.put("supply_amount",sendImportBean.getSupply_amount());
+//                row.put("tax_amount",sendImportBean.getTax_amount());
+//                row.put("total_amount",sendImportBean.getTotal_amount());
+//                row.put("order_seq",sendImportBean.getOrder_seq());
+//                row.put("qty",sendImportBean.getQty());
 
                 jsonSendArray.put(row);
             }
-            JsonSend.put("importpdtsendlist",jsonSendArray);
+            JsonSend.put("body",jsonSendArray);
             String JsonSendString = JsonSend.toString();
             try {
                 ImportListSendConnection importListSendConnection = new ImportListSendConnection();
-                String send_result = importListSendConnection.execute(JsonSendString).get();
+                String send_result = importListSendConnection.execute(String.valueOf(jsonSendArray)).get();
                 Log.w("Json전송 결과", send_result);
             }catch (Exception e){
                 Toast.makeText(this, "서버 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -368,6 +424,79 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
 
         }
     }
+
+    public class ImportListConnectionMes extends  AsyncTask<String,Void,String>
+    {
+        String sendMsg, receiveMsg;
+        @Override
+        protected String doInBackground(String... strings) {
+
+            selectBoxList = new ArrayList<>();
+            String str;
+            try {
+                URL url = new URL("http://192.168.0.227:8089/api/orderCheckList");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(6000);
+                conn.setReadTimeout(6000);
+                conn.setRequestProperty("access_token","LY6LAhDvtaV9q2kmNlkK");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "{\"ORDER_CODE\":\""+strings[0]+"\"}";
+                osw.write(sendMsg);
+                osw.flush();
+                String tmp2 = "";
+                for (String strss : strings)
+                {
+                    tmp2 += strss + " ";
+                }
+                if(conn.getResponseCode() == conn.HTTP_OK)
+                {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(),"UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null)
+                    {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                    JSONObject jsonObject = new JSONObject(receiveMsg);
+                    JSONArray jArray = (JSONArray) jsonObject.get("orderlist");
+                    for (int i = 0; i <jArray.length();i++)
+                    {
+                        JSONObject row = jArray.getJSONObject(i);
+                        importBean = new ImportBean();
+                        importBean.setOrder_code(row.getString("ORDER_CODE"));
+                        importBean.setSupply_manager_name(row.getString("SUPPLY_MANAGER_NAME"));
+
+                        importBean.setNO(row.getInt("NO"));
+                        importBean.setPdt_name(row.getString("PDT_NAME"));
+                        int qty = row.getInt("QTY") - row.getInt("REALQTY");
+                        if(qty <= 0)
+                        {
+                            importBean = null;
+                            continue;
+                        }
+                        importBean.setQty(qty);
+                        importBean.setPdt_real_qty(qty);
+                        importBean.setUnit(row.getString("UNIT"));
+                        importBean.setPdt_cd(Integer.parseInt(row.getString("PDT_CD")));
+                        importBean.setCust_seq(Integer.parseInt(row.getString("CUST_SEQ")));
+
+                        selectBoxList.add(importBean);
+                    }
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return receiveMsg;
+        }
+    }
+
 
     public class ImportListConnection extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
@@ -423,9 +552,11 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
 
                             importBean.setNO(row.getInt("NO"));
                             importBean.setPdt_name(row.getString("PDT_NAME"));
-                             importBean.setQty(row.getInt("PDT_QTY"));
-                             importBean.setPdt_real_qty(row.getInt("PDT_QTY"));
+                             importBean.setQty(row.getInt("QTY"));
+                             importBean.setPdt_real_qty(row.getInt("QTY"));
                             importBean.setUnit(row.getString("UNIT"));
+                            importBean.setPdt_cd(Integer.parseInt(row.getString("PDT_CD")));
+                            importBean.setCust_seq(Integer.parseInt(row.getString("CUST_SEQ")));
 
 //
 //
@@ -566,14 +697,19 @@ public class ImportConfirmActivity extends AppCompatActivity implements View.OnC
             try {
                 selectBoxList = new ArrayList<>();
                 String str;
-                URL url = new URL("http://mespda.thethe.co.kr/import/insertmaterialin");
+                //URL url = new URL("http://mespda.thethe.co.kr/import/insertmaterialin");
+                URL url = new URL("http://192.168.0.227:8089/api/insertIO");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(6000);
                 conn.setReadTimeout(6000);
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestProperty("access_token", "LY6LAhDvtaV9q2kmNlkK");
+                conn.setRequestProperty("type","MES");
+                conn.setRequestProperty("Content-Type", "application/json");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "json_send=" + strings[0];
+//                sendMsg = "{\"json_send\":\""+strings[0]+"\"}";
+                sendMsg = strings[0];
+                Log.d("sendMsg", sendMsg);
                 osw.write(sendMsg);
                 osw.flush();
 

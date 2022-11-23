@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".inboundcheck.inboundCheckActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/menuBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#4B73C5">
+        android:background="#4B73C5"
+        android:layout_height="70dp">
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:clickable="true"
             android:scaleType="center"
-            android:src="@drawable/back" />
+            android:clickable="true"
+            android:src="@drawable/back"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/nanumsquare_acb"
-            android:text="발주서 확인"
+            android:text="상품 출고(MES)"
             android:textColor="#FFFFFF"
             android:textSize="22dp" />
 
     </RelativeLayout>
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/nanumsquare_acb"
-                    android:text="발주코드"
+                    android:text="수주번호"
                     android:textSize="14dp" />
 
 
@@ -80,27 +80,7 @@
                     android:layout_marginLeft="6dp"
                     android:textSize="12dp" />
 
-                <TextView
-                    android:id="@+id/tv_custname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="180dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/nanumsquare_acb"
-                    android:text="발주처"
-                    android:textSize="14dp" />
 
-                <TextView
-                    android:id="@+id/tv_custnameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center|right"
-                    android:layout_toRightOf="@id/tv_custname"
-                    android:fontFamily="@font/nanumsquare_acb"
-                    android:layout_marginLeft="6dp"
-                    android:textSize="12dp" />
 
 
 
@@ -113,13 +93,64 @@
                 >
 
                 <TextView
-                    android:id="@+id/orderdate"
+                    android:id="@+id/supplyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/nanumsquare_acb"
-                    android:text="발주일자"
+                    android:text="수주처명"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/supplyNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center|right"
+                    android:layout_toRightOf="@id/supplyName"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/supplyManagerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:text="수주담당자"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/supplyManagerNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center|right"
+                    android:layout_toRightOf="@id/supplyManagerName"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                >
+
+                <TextView
+                    android:id="@+id/orderDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:text="수주일자"
                     android:textSize="14dp" />
 
                 <TextView
@@ -128,32 +159,33 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center|right"
-                    android:layout_toRightOf="@id/orderdate"
-                    android:fontFamily="@font/nanumsquare_acb"
                     android:layout_marginLeft="6dp"
+                    android:layout_toRightOf="@id/orderDate"
+                    android:fontFamily="@font/nanumsquare_acb"
                     android:textSize="12dp" />
 
                 <TextView
-                    android:id="@+id/supplyAmount"
+                    android:id="@+id/supplyPhoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="180dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/nanumsquare_acb"
-                    android:text="공급가액"
+                    android:text="연락처"
                     android:textSize="14dp" />
 
                 <TextView
-                    android:id="@+id/supplyAmountText"
+                    android:id="@+id/supplyPhoneNumberText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center|right"
-                    android:layout_toRightOf="@id/supplyAmount"
+                    android:layout_toRightOf="@id/supplyPhoneNumber"
                     android:fontFamily="@font/nanumsquare_acb"
                     android:layout_marginLeft="6dp"
                     android:textSize="12dp" />
+
 
             </RelativeLayout>
             <RelativeLayout
@@ -163,52 +195,33 @@
                 android:paddingRight="5dp"
                 >
 
-                <TextView
-                    android:id="@+id/taxAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/nanumsquare_acb"
-                    android:text="VAT"
-                    android:textSize="14dp" />
 
-                <TextView
-                    android:id="@+id/taxAmountText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center|right"
-                    android:layout_marginLeft="6dp"
-                    android:layout_toRightOf="@id/taxAmount"
-                    android:fontFamily="@font/nanumsquare_acb"
-                    android:textSize="12dp" />
+                <!--                <TextView-->
+                <!--                    android:id="@+id/bigo"-->
+                <!--                    android:layout_width="50dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_centerVertical="true"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:fontFamily="@font/nanumsquare_acb"-->
+                <!--                    android:gravity="left"-->
+                <!--                    android:text="비고"-->
+                <!--                    android:textSize="14dp" />-->
 
-                <TextView
-                    android:id="@+id/totalAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="180dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/nanumsquare_acb"
-                    android:text="총 금액"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:id="@+id/totalAmountText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center|right"
-                    android:layout_toRightOf="@id/totalAmount"
-                    android:fontFamily="@font/nanumsquare_acb"
-                    android:layout_marginLeft="6dp"
-                    android:textSize="12dp" />
+                <!--                <EditText-->
+                <!--                    android:id="@+id/bigoText"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_alignParentRight="true"-->
+                <!--                    android:layout_marginTop="1dp"-->
+                <!--                    android:layout_toRightOf="@+id/bigo"-->
+                <!--                    android:ems="4"-->
+                <!--                    android:gravity="left"-->
+                <!--                    android:inputType="text"-->
+                <!--                    android:singleLine="true"-->
 
 
+                <!--                    />-->
             </RelativeLayout>
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -240,8 +253,7 @@
             >
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="품목명"
                 android:layout_centerVertical="true"
@@ -252,9 +264,38 @@
 
             <TextView
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:gravity="center"
+                android:text="주문수량"
+                android:textSize="13dp" />
+
+            <TextView
+                android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="발주수량"
+                android:text="출고수량"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanumsquare_acb"
+                />
+
+            <!--            <TextView-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_weight="2"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="불량수량"-->
+            <!--                android:gravity="center"-->
+            <!--                android:textSize="13dp"-->
+            <!--                android:fontFamily="@font/nanumsquare_acb"-->
+            <!--                />-->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="적재창고"
                 android:gravity="center"
                 android:textSize="13dp"
                 android:fontFamily="@font/nanumsquare_acb"
@@ -264,11 +305,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="입고수량"
+                android:text="설정"
                 android:gravity="center"
                 android:textSize="13dp"
                 android:fontFamily="@font/nanumsquare_acb"
+                android:visibility="gone"
                 />
+
 
         </LinearLayout>
 
@@ -289,7 +332,7 @@
 
 
             <ListView
-                android:id="@+id/importCheckList"
+                android:id="@+id/exportCheckList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="3dp"
@@ -299,6 +342,48 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/exportListResetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/reset_btn" />
+
+
+                <ImageView
+                    android:id="@+id/exportListSendBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/next" />
+
+
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
+
+
+
+
+
+
 </LinearLayout>
+
+
